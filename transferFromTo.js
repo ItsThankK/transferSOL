@@ -87,8 +87,10 @@ const transferSol = async() => {
   console.log('==> Signature is', signature);
   console.log("\n");
 
-  console.log(`-> from Wallet balance: ${parseInt(walletBalanceFrom) / LAMPORTS_PER_SOL} SOL`);
-  console.log(`-> to Wallet balance: ${parseInt(walletBalanceTo) / LAMPORTS_PER_SOL} SOL`);
+  const walletBalanceFromAfter = await connection.getBalance(from.publicKey);
+  console.log(`-> from Wallet balance: ${parseInt(walletBalanceFromAfter) / LAMPORTS_PER_SOL} SOL`);
+  const walletBalanceToAfter = await connection.getBalance(to.publicKey);
+  console.log(`-> to Wallet balance: ${parseInt(walletBalanceToAfter) / LAMPORTS_PER_SOL} SOL \n`);
 }
 
 transferSol();
